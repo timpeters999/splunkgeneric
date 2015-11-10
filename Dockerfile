@@ -3,8 +3,12 @@ FROM ubuntu:14.04
 # install some stuff
 RUN sudo apt-get update && sudo apt-get install -y nodejs npm nodejs-legacy git git-core wget rpm curl
 
-#ADD src/package.json package.json
-#RUN sudo npm install --production
+ADD src/package.json package.json
+RUN sudo npm install --production
+
+RUN sudo npm cache clean -f
+RUN sudo npm install -g n
+RUN sudo n stable
 
 RUN sudo mkdir -p /opt/app
 
